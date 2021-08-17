@@ -1,18 +1,24 @@
 require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
-const mongoose = require("mongoose");
+const morgan = require("morgan");
+const mongoose = require("./db/connection");
 const app = express();
-const { PORT, DB_URI } = process.env || 3000;
+const { PORT } = process.env || 3000;
 
-mongoose.connect(DB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
-
-const db = mongoose.connection;
-db.on("connect", () => console.log(`🤘🏼 Mongo is connected!`));
-db.on("disconnect", () => console.log(`👋🏼 Mongo is disconnected.`));
-db.on("error", (err) => console.log(`❌ Error connecting ${err}`));
+// Import routers
+const userRouter = require("./controllers/user");
+const exerciseRouter = require("./controllers/exercise");
 
 app.use(cors());
 app.use(express.json());
+app.use(morgan("tiny"));
+
+// Test if server is working
+app.get("/", (req, res) => res.send(`🤘🏼 Server is working!`));
+
+// Routes
+app.use("/user", userRouter);
+app.use("/exercise", exerciseRouter);
 
 app.listen(PORT, () => console.log(`👍🏼 Server is running on port: ${PORT}`));
