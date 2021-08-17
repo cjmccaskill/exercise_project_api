@@ -1,7 +1,11 @@
 require("dotenv").config();
 const mongoose = require("mongoose");
 const { DB_URI } = process.env;
-const config = { useNewUrlParser: true, useUnifiedTopology: true };
+const config = {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useCreateIndex: true,
+};
 mongoose.connect(DB_URI, config);
 
 const db = mongoose.connection;
