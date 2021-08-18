@@ -1,7 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
-const corsOption = require("./configs/cors")
+const corsOption = require("./configs/cors");
 const morgan = require("morgan");
 const mongoose = require("./db/connection");
 const app = express();
@@ -12,6 +12,7 @@ const userRouter = require("./controllers/user");
 const exerciseRouter = require("./controllers/exercise");
 
 app.use(cors());
+app.use(corsOption());
 app.use(express.json());
 app.use(morgan("tiny"));
 
