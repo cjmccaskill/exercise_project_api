@@ -8,7 +8,7 @@ router.get("/", async (req, res) => {
 });
 
 // Create route
-router.post("/", async (req, res) => {
+router.post("/add", async (req, res) => {
   res.json(
     await Exercise.create(req.body).catch((err) => res.status(400).json(err))
   );
