@@ -1,6 +1,6 @@
 //Add your frontend url as a string to the whitelist to enable security
-var whitelist = "https://exercise-project.vercel.app/";
-var corsOptions = {
+let whitelist = "https://exercise-project.vercel.app/";
+let corsOptions = {
   origin: function (origin, callback) {
     if (whitelist.length === 0) {
       callback(null, true);
@@ -14,4 +14,4 @@ var corsOptions = {
   },
 };
 
-module.exports = corsOptions
+module.exports = corsOptions;

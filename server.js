@@ -10,9 +10,10 @@ const { PORT } = process.env || 3000;
 // Import routers
 const userRouter = require("./controllers/user");
 const exerciseRouter = require("./controllers/exercise");
+const { origin } = require("./configs/cors");
 
 app.use(cors());
-app.use(corsOption());
+// app.use(corsOption(origin));
 app.use(express.json());
 app.use(morgan("tiny"));
 
