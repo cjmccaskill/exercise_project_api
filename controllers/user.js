@@ -8,9 +8,11 @@ router.get("/", async (req, res) => {
 });
 
 // Create route
-router.post("/", async (req, res) => {
+router.post("/add", async (req, res) => {
+  const username = req.body.username;
+  const newUser = new User({ username });
   res.json(
-    await User.create(req.body).catch((err) => res.status(400).json(err))
+    await User.create(newUser).catch((err) => res.status(400).json(err))
   );
 });
 // Update route
