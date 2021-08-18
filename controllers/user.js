@@ -8,7 +8,7 @@ router.get("/", async (req, res) => {
 });
 
 // Create route
-router.post("/add", async (req, res) => {
+router.post("/", async (req, res) => {
   res.json(
     await User.create(req.body).catch((err) => res.status(400).json(err))
   );
